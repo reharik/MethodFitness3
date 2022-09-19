@@ -1,0 +1,1 @@
+export { AddUserOutlined } from './AddUserOutlined';

@@ -1,0 +1,1 @@
+export { Frailty } from './Frailty';

@@ -1,0 +1,1 @@
+export { GetGoodRestLHQ } from './GetGoodRestLHQ';

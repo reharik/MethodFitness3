@@ -1,0 +1,1 @@
+export { WarningSolid } from './WarningSolid';

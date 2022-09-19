@@ -1,0 +1,1 @@
+export { MoveEveryDayTapped } from './MoveEveryDayTapped';

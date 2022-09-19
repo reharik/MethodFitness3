@@ -1,0 +1,13 @@
+mutation authenticate($authenticateInput: AuthenticateInput!) {
+	authenticate(authenticateInput: $authenticateInput) {
+		success
+		errors
+		data {
+			entityId
+			firstName
+			lastName
+			token
+			authenticated
+		}
+	}
+}

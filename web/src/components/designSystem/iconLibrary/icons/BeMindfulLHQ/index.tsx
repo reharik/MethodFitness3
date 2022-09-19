@@ -1,0 +1,1 @@
+export { BeMindfulLHQ } from './BeMindfulLHQ';

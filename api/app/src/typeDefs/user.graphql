@@ -1,0 +1,52 @@
+type Query {
+	currentUser: CurrentUserResponse!
+}
+type CurrentUserResponse implements Response {
+	success: Boolean!
+	errors: [String!]!
+	data: CurrentUser
+}
+
+type Mutation {
+	authenticate(authenticateInput: AuthenticateInput!): AuthenticateResponse!
+}
+
+type AuthenticateResponse implements Response {
+	success: Boolean!
+	errors: [String!]!
+	data: CurrentUser
+}
+
+type CurrentUser implements Node {
+	entityId: ID!
+	firstName: String
+	lastName: String
+	authenticated: Boolean
+	token: String
+}
+
+type User implements Node {
+	entityId: ID!
+	firstName: String
+	lastName: String
+	email: String
+	birthDate: Date
+	phone: String
+	secondaryPhone: String
+	address: Address
+	color: String
+	archived: Boolean
+}
+
+type Address {
+	address1: String
+	address2: String
+	city: String
+	state: String
+	zipCode: Int
+}
+
+input AuthenticateInput {
+	userName: String!
+	password: String!
+}

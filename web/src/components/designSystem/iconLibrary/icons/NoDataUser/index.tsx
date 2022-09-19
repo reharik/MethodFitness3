@@ -1,0 +1,1 @@
+export { NoDataUser } from './NoDataUser';

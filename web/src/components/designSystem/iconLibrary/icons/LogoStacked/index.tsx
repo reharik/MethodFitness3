@@ -1,0 +1,1 @@
+export { LogoStacked } from './LogoStacked';

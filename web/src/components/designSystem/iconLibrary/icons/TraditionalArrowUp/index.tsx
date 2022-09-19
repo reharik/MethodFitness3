@@ -1,0 +1,1 @@
+export { TraditionalArrowUp } from './TraditionalArrowUp';

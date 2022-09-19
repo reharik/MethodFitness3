@@ -1,0 +1,1 @@
+export { LearnSomethingNewTapped } from './LearnSomethingNewTapped';

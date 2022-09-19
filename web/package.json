@@ -1,0 +1,74 @@
+{
+	"name": "web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"gen": "graphql-codegen --config codegen.yml",
+		"pretty": "prettier --check ./src",
+		"prettify": "prettier -w ./src",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"dependencies": {
+		"@apollo/client": "^3.6.9",
+		"@storybook/addon-links": "^6.5.11",
+		"@storybook/react": "^6.5.11",
+		"@types/react-datepicker": "^4.4.2",
+		"@types/uuid": "^8.3.4",
+		"@typescript-eslint/eslint-plugin": "^5.37.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-react-app": "^7.0.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"formik": "^2.2.9",
+		"graphql": "^16.6.0",
+		"luxon": "^3.0.3",
+		"node-html-parser": "^6.0.0",
+		"prettier": "^2.7.1",
+		"react": "^18.2.0",
+		"react-datepicker": "^4.8.0",
+		"react-dom": "^18.2.0",
+		"react-number-format": "^5.0.0-beta.4",
+		"react-router": "^6.3.0",
+		"react-router-dom": "^6.3.0",
+		"styled-components": "^5.3.5",
+		"styled-react-modal": "^3.0.0",
+		"titleize": "^3.0.0",
+		"uuid": "^9.0.0",
+		"yup": "^0.32.11"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^2.12.0",
+		"@graphql-codegen/introspection": "^2.2.1",
+		"@graphql-codegen/named-operations-object": "^2.3.1",
+		"@graphql-codegen/typescript": "^2.7.3",
+		"@graphql-codegen/typescript-operations": "^2.5.3",
+		"@graphql-codegen/typescript-react-apollo": "^3.3.3",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/react": "^13.4.0",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^27.5.2",
+		"@types/luxon": "^3.0.1",
+		"@types/node": "^16.11.58",
+		"@types/react": "^18.0.19",
+		"@types/react-dom": "^18.0.6",
+		"@types/styled-components": "^5.1.26",
+		"@types/styled-react-modal": "^1.2.2",
+		"react-scripts": "5.0.1",
+		"typescript": "^4.8.3",
+		"web-vitals": "^2.1.4"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}

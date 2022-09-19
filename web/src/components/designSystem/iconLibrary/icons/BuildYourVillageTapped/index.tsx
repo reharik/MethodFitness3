@@ -1,0 +1,1 @@
+export { BuildYourVillageTapped } from './BuildYourVillageTapped';

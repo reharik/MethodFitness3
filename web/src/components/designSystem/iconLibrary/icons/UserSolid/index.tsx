@@ -1,0 +1,1 @@
+export { UserSolid } from './UserSolid';

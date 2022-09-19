@@ -1,0 +1,1 @@
+export { InviteOutlined } from './InviteOutlined';

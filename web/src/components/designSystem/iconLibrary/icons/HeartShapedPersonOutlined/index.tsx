@@ -1,0 +1,1 @@
+export { HeartShapedPersonOutlined } from './HeartShapedPersonOutlined';

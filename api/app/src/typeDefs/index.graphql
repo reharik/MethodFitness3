@@ -1,0 +1,20 @@
+# Custom Scalars
+scalar DateTime
+scalar Date
+
+"""
+An interface that should be implemented by all Entities. i.e. all objects with an Id
+"""
+interface Node {
+	entityId: ID!
+}
+
+"""
+An interface that should be implemented by all Queries that return a single object.
+It provides the success/errors for the query
+"""
+interface Response {
+	success: Boolean!
+	errors: [String!]!
+	data: Node
+}

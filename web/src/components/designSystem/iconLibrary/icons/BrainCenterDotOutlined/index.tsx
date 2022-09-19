@@ -1,0 +1,1 @@
+export { BrainCenterDotOutlined } from './BrainCenterDotOutlined';

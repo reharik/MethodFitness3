@@ -1,0 +1,1 @@
+export { NonModifiableRiskFactorLHQ } from './NonModifiableRiskFactorLHQ';

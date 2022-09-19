@@ -1,0 +1,1 @@
+export { PrintOutlined } from './PrintOutlined';

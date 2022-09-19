@@ -1,0 +1,1 @@
+export { RemoveUserSolid } from './RemoveUserSolid';

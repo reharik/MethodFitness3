@@ -1,0 +1,1 @@
+export { MoveEveryDayUntapped } from './MoveEveryDayUntapped';

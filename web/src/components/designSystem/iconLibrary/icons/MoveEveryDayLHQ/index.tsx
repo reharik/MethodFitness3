@@ -1,0 +1,1 @@
+export { MoveEveryDayLHQ } from './MoveEveryDayLHQ';

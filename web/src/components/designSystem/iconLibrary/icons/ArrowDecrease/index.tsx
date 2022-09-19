@@ -1,0 +1,1 @@
+export { ArrowDecrease } from './ArrowDecrease';

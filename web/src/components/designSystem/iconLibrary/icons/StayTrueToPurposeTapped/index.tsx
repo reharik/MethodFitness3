@@ -1,0 +1,1 @@
+export { StayTrueToPurposeTapped } from './StayTrueToPurposeTapped';

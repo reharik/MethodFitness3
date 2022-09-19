@@ -1,0 +1,1 @@
+export { LeftPointerArrow } from './LeftPointerArrow';

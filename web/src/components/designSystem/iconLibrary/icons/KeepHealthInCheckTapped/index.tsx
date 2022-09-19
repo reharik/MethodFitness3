@@ -1,0 +1,1 @@
+export { KeepHealthInCheckTapped } from './KeepHealthInCheckTapped';

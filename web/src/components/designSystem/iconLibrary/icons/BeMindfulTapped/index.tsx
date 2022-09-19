@@ -1,0 +1,1 @@
+export { BeMindfulTapped } from './BeMindfulTapped';

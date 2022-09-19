@@ -1,0 +1,1 @@
+export { CameraPlusOutlined } from './CameraPlusOutlined';
