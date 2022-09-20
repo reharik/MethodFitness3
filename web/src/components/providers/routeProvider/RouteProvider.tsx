@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { config } from '../../../config';
 import { RootContainer } from '../../../containers/RootContainer';
 // import { CurrentUser, CurrentUserContextProps } from 'eng-common-web/providers';
 import { FileNotFound } from '../../FileNotFound';
@@ -15,9 +16,12 @@ export type RouterProviderProps = {
 
 export const RouteProvider = (): JSX.Element | null => {
 	// const { currentUser } = currentUserContext;
+	const apiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiProxyRoute}`;
+
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path='/calendar' path={apiUri} />
 				<Route path='/*' element={<RootContainer />} />
 				<Route path='*' element={<FileNotFound />}></Route>
 			</Routes>

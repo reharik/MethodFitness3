@@ -3,6 +3,7 @@ type FetchUtilProps = {
 	method?: 'GET' | 'POST';
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	body?: any;
+	contentType: string;
 };
 
 export type Response = {
@@ -17,6 +18,7 @@ export const fetchUtil = async ({
 	url,
 	method = 'GET',
 	body,
+	contentType = 'application/json; charset=UTF-8',
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 FetchUtilProps): Promise<any> => {
 	let bodyString;
@@ -32,7 +34,7 @@ FetchUtilProps): Promise<any> => {
 			method,
 			body: bodyString,
 			headers: {
-				'Content-Type': 'application/json; charset=UTF-8',
+				'Content-Type': contentType,
 			},
 			credentials: 'include',
 		});
