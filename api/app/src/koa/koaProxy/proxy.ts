@@ -31,6 +31,10 @@ export const koaProxyMiddleware = (slug: string, options: Options) => {
 			ctx.res.on('finish', () => {
 				resolve(ctx);
 			});
+			ctx.res.on('error', (error) => {
+				reject(error);
+			});
+
 			proxy.web(ctx.req, ctx.res, options, (e) => {
 				const statusTransform = {
 					ECONNREFUSED: 503,

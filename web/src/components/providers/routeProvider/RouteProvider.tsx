@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { config } from '../../../config';
 import { RootContainer } from '../../../containers/RootContainer';
+import { SignInFormContainer } from '../../../containers/signInFormContainer/SignInFormContainer';
 // import { CurrentUser, CurrentUserContextProps } from 'eng-common-web/providers';
 import { FileNotFound } from '../../FileNotFound';
+import { Calendar } from '../../shells/Calendar';
 
 export type RouterProviderProps = {
 	// currentUserContext: CurrentUserContextProps;
@@ -21,12 +23,10 @@ export const RouteProvider = (): JSX.Element | null => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/calendar' path={apiUri} />
+				<Route path='/signin' element={<SignInFormContainer />} />
 				<Route path='/*' element={<RootContainer />} />
 				<Route path='*' element={<FileNotFound />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
 };
-
-// express script home delivery

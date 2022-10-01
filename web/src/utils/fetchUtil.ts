@@ -3,7 +3,7 @@ type FetchUtilProps = {
 	method?: 'GET' | 'POST';
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	body?: any;
-	contentType: string;
+	contentType?: string;
 };
 
 export type Response = {

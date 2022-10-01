@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { HeaderContainer } from '../../containers/HeaderContainer';
 import { MenuContainer } from '../../containers/MenuContainer';
+import { AuthenticatedRoutes } from './AuthenticatedRoutes';
 
 type LayoutProps = {
 	isReady: boolean;
@@ -25,7 +26,12 @@ export const Layout = ({ isReady, children }: LayoutProps) => {
 				<MenuContainer />
 				{/* </Burger> */}
 				<StyledMainContent>
-					<StyledContent>{children}</StyledContent>
+					<StyledContent>
+						<div id='messageContainer'></div>
+						<div id='contentInner'>
+							<AuthenticatedRoutes />
+						</div>
+					</StyledContent>
 				</StyledMainContent>
 			</StyledBody>
 		</StyledMainBody>
