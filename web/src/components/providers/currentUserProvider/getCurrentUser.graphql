@@ -1,0 +1,13 @@
+query currentUser {
+	currentUser {
+		success
+		errors
+		data {
+			authenticated
+			entityId
+			firstName
+			lastName
+			token
+		}
+	}
+}

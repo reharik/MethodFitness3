@@ -1,6 +1,9 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { sessionStorageKey } from '../../../enums/sessionStorageKeys';
-import { CurrentUser } from '../../../generated/graphql';
+import {
+	CurrentUser,
+	useCurrentUserLazyQuery,
+} from '../../../generated/graphql';
 import { clearSessionStorage } from '../../../utils/sessionStorage';
 
 type CurrentUserContextProps = {
@@ -30,6 +33,16 @@ export const CurrentUserProvider = ({
 	children,
 }: CurrentUserProviderProps): JSX.Element | null => {
 	const [currentUser, setCurrentUser] = useState<CurrentUser>(nulloUser);
+	const [getCurrentUserQuery] = useCurrentUserLazyQuery();
+
+	useEffect(() => {
+		getCurrentUserQuery().then(({ data }) => {
+			if (data?.currentUser.data) {
+				setCurrentUser(data.currentUser.data);
+			}
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const logoutUser = () => {
 		setCurrentUser(nulloUser);

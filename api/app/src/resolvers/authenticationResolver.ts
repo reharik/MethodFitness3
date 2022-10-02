@@ -12,7 +12,7 @@ export const resolvers: Resolvers = {
 			const { currentUser } = context;
 			const errors = !currentUser ? ['No logged in user found'] : [];
 
-			return { currentUser, success: !!currentUser, errors };
+			return { data: currentUser, success: !!currentUser, errors };
 		},
 	},
 	Mutation: {

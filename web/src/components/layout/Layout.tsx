@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { HeaderContainer } from '../../containers/HeaderContainer';
 import { MenuContainer } from '../../containers/MenuContainer';
@@ -9,6 +10,11 @@ type LayoutProps = {
 };
 
 export const Layout = ({ isReady, children }: LayoutProps) => {
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		MF.start();
+	}, []);
 	if (!isReady) {
 		return null;
 	}
@@ -40,26 +46,32 @@ export const Layout = ({ isReady, children }: LayoutProps) => {
 
 const StyledContent = styled.div(
 	({ theme: { color } }) => `
-							paddingRight: 24,
-							margin: 0,
-							minHeight: '100%',
+							paddingRight: 24;
+							margin: 0;
+							minHeight: '100%';
 `
 );
 
 const StyledMainContent = styled.div(
 	({ theme: { color } }) => `
-padding: '0 0 24px 0',
-background: '#f2f2f2',
+padding: '0 0 24px 0';
+background: '#f2f2f2';
+width: 100%;
+height: 100%;
 `
 );
 
 const StyledBody = styled.div(
 	({ theme: { color } }) => `
-display: flex;
+	width: 100%;
+	height: 100%;
+	display: flex;
 	`
 );
 
 const StyledMainBody = styled.div(
 	({ theme: { color } }) => `
-`
+	width: 100%;
+	height: 100%;
+	`
 );

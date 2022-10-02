@@ -33,6 +33,8 @@ export type UserLoginInfo = {
 	salt: string;
 };
 
+export type AuthToken = { userId?: string };
+
 export const buildUser = async (id: string): Promise<User | undefined> => {
 	return getUserById(id);
 };
