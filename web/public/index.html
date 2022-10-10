@@ -51,10 +51,10 @@
 				href="http://methodfit.net/Content/css/fg.menu.css"
 				rel="stylesheet" />
 			<link
-				href="http://methodfit.net/Content/css/main.css"
+				href="http://methodfit.net/Content/css/main2.css"
 				rel="stylesheet" />
 			<link
-				href="http://methodfit.net/Content/css/mf.css"
+				href="http://methodfit.net/Content/css/mf2.css"
 				rel="stylesheet" />
 			<link
 				href="http://methodfit.net/Content/css/CC.css"
@@ -65,7 +65,7 @@
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery-ui-1.10.0.custom.js"></script>
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/cc.tokeninput2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/grid.locale-en.js"></script>
-			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery.jqGrid.src.js"></script>
+			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery.jqGrid.src2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery-tmpl.js"></script>
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery.miniColors.js"></script>
 			<script src="http://methodfit.net/Content/scripts/jqueryPlugins/jquery.fileinput.js"></script>
@@ -84,7 +84,7 @@
 			<script src="http://methodfit.net/Content/scripts/externalHelpers/ba-debug.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/MF.App2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/MF.Controller2.js"></script>
-			<script src="http://methodfit.net/Content/scripts/MF/MF.Mixins.js"></script>
+			<script src="http://methodfit.net/Content/scripts/MF/MF.Mixins2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/MF.Views.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/MF.OneOffViews.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/MF.Routing.js"></script>
@@ -95,9 +95,9 @@
 			<script src="http://methodfit.net/Content/scripts/MF/Schedule/MF.ScheduleApp.Routing.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/Schedule/MF.ScheduleApp.Views.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/Billing/MF.BillingApp.Routing.js"></script>
-			<script src="http://methodfit.net/Content/scripts/MF/Billing/MF.BillingApp.Views.js"></script>
+			<script src="http://methodfit.net/Content/scripts/MF/Billing/MF.BillingApp.Views2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/Reporting/MF.ReportingApp.Routing.js"></script>
-			<script src="http://methodfit.net/Content/scripts/MF/Reporting/MF.ReportingApp.Views.js"></script>
+			<script src="http://methodfit.net/Content/scripts/MF/Reporting/MF.ReportingApp.Views2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/CC.ModelBinding/CC.CustomBindings.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/CC.ModelBinding/CC.Elements.js"></script>
 			<script src="http://methodfit.net/Content/scripts/MF/CC.ModelBinding/CC.NotificationService.js"></script>
@@ -109,7 +109,7 @@
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/jquery.cc.grid.js"></script>
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/cc.grid.columnService.js"></script>
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/cc.gridHelpers.js"></script>
-			<script src="http://methodfit.net/Content/scripts/internalHelpers/mf.gridSearch.js"></script>
+			<script src="http://methodfit.net/Content/scripts/internalHelpers/mf.gridSearch2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/MF.repository2.js"></script>
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/jquery.mf.calendar.js"></script>
 			<script src="http://methodfit.net/Content/scripts/internalHelpers/MF.blockedTimes.js"></script>
@@ -390,5 +390,45 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    --></body>
+			
+    -->
+		<script id="gridTemplate" type="text/x-jQuery-tmpl">
+			<div class="content-header">
+					<input class="search" /> 
+					<button style="display:none" id="new" class="new" title="New"></button>
+					<button style="display:none" class="delete" title="Delete these items"></button>
+					<button style="display:none" class="return" title="Return"></button>
+					<button style="display:none" class="toggleArchived" data-togglestate="hide" title="Toggle Archive">Toggle Archive</button>
+					<span class="title-name">${_Title}</span>
+			</div>
+			<div class="form-scroll-inner">
+					<div id="contentArea" class="content-inner">
+							{{if EntityId}}
+							<input id="EntityId" type="hidden" value="${EntityId}"/>
+							{{/if}}
+							{{if ParentId}}
+							<input id="ParentId" type="hidden" value="${ParentId}"/>
+							{{/if}}
+							<table id="gridContainer" class="scroll"></table>
+					</div>
+			</div>
+	</script>
+	<script id="payTrainerTemplate" type="text/x-jQuery-tmpl">
+		<div class="col left">
+				<div class="fieldRow">
+						Are you sure you would like to pay $${amount} to ${trainersName}?
+				</div>
+		</div>
+</script>
+<script id="payTrainerSearchTemplate" type="text/x-jQuery-tmpl">
+	<div id="filterArea">
+			<div class="headerInput">
+					End Date
+					<input type="text" data-bind="value:EndDate" name="EndDate" class="datePicker" >
+			</div>
+			<button id="search" class="filter" title="Filter"></button>
+			<button id='payTrainerButton' class='dollar_sign' ></button>
+	</div>
+</script>
+</body>
 </html>

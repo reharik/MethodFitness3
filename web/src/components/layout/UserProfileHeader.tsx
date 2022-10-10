@@ -24,7 +24,7 @@ export const UserProfileHeader = () => {
 
 const StyledButton = styled(StyledLinkButton)(
 	({ theme: { color } }) => `
-	border-left: 2px solid #F6F6F6;
+
 	color: white;
 	font-family: verdana;
 	font-size: 10px;
@@ -41,7 +41,8 @@ const StyledButton = styled(StyledLinkButton)(
 );
 const StyledLink = styled(Link)(
 	({ theme: { color } }) => `
-	color: white;
+	border-right: 2px solid #F6F6F6;
+		color: white;
 	font-family: verdana;
 	font-size: 10px;
 	font-weight: bold;

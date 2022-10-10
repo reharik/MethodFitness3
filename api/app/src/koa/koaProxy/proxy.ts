@@ -16,7 +16,7 @@ export const koaProxyMiddleware = (slug: string, options: Options) => {
 			return await next();
 		}
 		const newPath = originalPath.replace(slug, '');
-		const fullTarget = options.target + newPath;
+		const fullTarget = options.target + newPath + ctx.request.search;
 		ctx.req.url = fullTarget;
 		console.log(`Proxying ${originalUrl} -> ${ctx.req.url}`);
 

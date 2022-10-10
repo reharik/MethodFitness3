@@ -1,10 +1,41 @@
 import { useState, useEffect } from 'react';
 import { MenuItemList } from '../components/layout/Menu';
 import { MenuItemData } from '../components/layout/Menu/MenuItemList';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+type CurrentMenuNodeInfo = {
+	currentI: MenuItemData;
+	currentIs: MenuItemData[];
+	bcs: string[];
+};
+const findCurrentMenuNodeInfo = (
+	arr: MenuItemData[],
+	target: string,
+	parentArr: MenuItemData[],
+	stack: string[]
+): CurrentMenuNodeInfo | undefined => {
+	if (arr.length <= 0) {
+		return;
+	}
+
+	for (let i = 0; i < arr.length; i++) {
+		const x = arr[i];
+		if (x.path === target) {
+			return { currentI: x, currentIs: parentArr, bcs: stack };
+		}
+		if (x.children.length > 0) {
+			stack.push(x.text);
+			return findCurrentMenuNodeInfo(
+				x.children,
+				target,
+				x.children,
+				stack
+			);
+		}
+	}
+};
 
 export const MenuContainer = () => {
-	const navigate = useNavigate();
+	const location = useLocation();
 	const [currentItem, setCurrentItem] = useState<MenuItemData>();
 	const [items, setItems] = useState<MenuItemData[]>([]);
 	const [currentItems, setCurrentItems] = useState<MenuItemData[]>([]);
@@ -13,8 +44,20 @@ export const MenuContainer = () => {
 	useEffect(() => {
 		const menu = menuItems;
 		setItems(menu);
-		setCurrentItems(menu);
-		setCurrentItem(menu[0]);
+		let result = {
+			currentI: menu[0],
+			currentIs: menu,
+			bcs: [] as string[],
+		};
+		if (location.hash) {
+			const target = location.pathname.substring(1) + location.hash;
+			result =
+				findCurrentMenuNodeInfo(menu, target, menu, [] as string[]) ||
+				result;
+		}
+		setCurrentItems(result.currentIs);
+		setCurrentItem(result.currentI);
+		setBreadCrumbItems(result.bcs);
 	}, []);
 
 	const menuItemClicked = (text: string, hasChildren: boolean) => {
@@ -27,7 +70,7 @@ export const MenuContainer = () => {
 			setCurrentItems(item.children);
 			setBreadCrumbItems((state) => [...state, item.text]);
 		} else {
-			navigate(item.path);
+			window.location.assign(item.path);
 		}
 	};
 	const navBreadCrumbClicked = (text: string, index: number) => {
@@ -64,61 +107,61 @@ const menuItems: MenuItemData[] = [
 	{
 		children: [],
 		text: 'Calendar',
-		path: 'calendar',
+		path: 'scheduler#calendar',
 	},
 	{
 		children: [],
 		text: 'Clients',
-		path: 'clientlist',
+		path: 'scheduler#clientlist',
 	},
 	{
 		children: [],
 		text: 'Session Report',
-		path: 'trainersessionview',
+		path: 'scheduler#trainersessionview',
 	},
 	{
 		children: [],
 		text: 'Payment History',
-		path: 'trainerpaymentlist',
+		path: 'scheduler#trainerpaymentlist',
 	},
 	{
 		children: [],
 		text: 'Session Verification',
-		path: 'trainersessionverification',
+		path: 'scheduler#trainersessionverification',
 	},
 	{
 		children: [
 			{
 				children: [],
 				text: 'Locations',
-				path: 'locationlist',
+				path: 'scheduler#locationlist',
 			},
 			{
 				children: [],
 				text: 'Base Rates',
-				path: 'basesessionrate',
+				path: 'scheduler#basesessionrate',
 			},
 			{
 				children: [],
 				text: 'Trainers',
-				path: 'trainerlist',
+				path: 'scheduler#trainerlist',
 			},
 			{
 				children: [
 					{
 						children: [],
 						text: 'Payments',
-						path: 'dailypayments',
+						path: 'scheduler#dailypayments',
 					},
 					{
 						children: [],
 						text: 'Productivity',
-						path: 'trainermetric',
+						path: 'scheduler#trainermetric',
 					},
 					{
 						children: [],
 						text: 'Activity',
-						path: 'activity',
+						path: 'scheduler#activity',
 					},
 				],
 				text: 'Reports',

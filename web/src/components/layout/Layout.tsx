@@ -32,10 +32,13 @@ export const Layout = ({ isReady, children }: LayoutProps) => {
 				<MenuContainer />
 				{/* </Burger> */}
 				<StyledMainContent>
-					<StyledContent>
+					<StyledContent className='content-outer'>
 						<div id='messageContainer'></div>
 						<div id='contentInner'>
 							<AuthenticatedRoutes />
+						</div>
+						<div className='content-footer'>
+							<span>&nbsp;</span>
 						</div>
 					</StyledContent>
 				</StyledMainContent>
@@ -56,7 +59,7 @@ const StyledMainContent = styled.div(
 	({ theme: { color } }) => `
 padding: '0 0 24px 0';
 background: '#f2f2f2';
-width: 100%;
+width: 87%;
 height: 100%;
 `
 );

@@ -7,7 +7,7 @@ import {
 import { clearSessionStorage } from '../../../utils/sessionStorage';
 
 type CurrentUserContextProps = {
-	currentUser: CurrentUser;
+	currentUser: CurrentUser & { loginChecked?: boolean };
 	setCurrentUser: (currentUser: CurrentUser) => void;
 	logoutUser: () => void;
 };
@@ -17,6 +17,7 @@ const nulloUser = {
 	firstName: '',
 	lastName: '',
 	token: '',
+	loginChecked: false,
 };
 
 export const CurrentUserContext = createContext<CurrentUserContextProps>({
@@ -32,13 +33,17 @@ type CurrentUserProviderProps = {
 export const CurrentUserProvider = ({
 	children,
 }: CurrentUserProviderProps): JSX.Element | null => {
-	const [currentUser, setCurrentUser] = useState<CurrentUser>(nulloUser);
+	const [currentUser, setCurrentUser] = useState<
+		CurrentUser & { loginChecked?: boolean }
+	>(nulloUser);
 	const [getCurrentUserQuery] = useCurrentUserLazyQuery();
 
 	useEffect(() => {
 		getCurrentUserQuery().then(({ data }) => {
 			if (data?.currentUser.data) {
 				setCurrentUser(data.currentUser.data);
+			} else {
+				setCurrentUser((state) => ({ ...state, loginChecked: true }));
 			}
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,6 +52,7 @@ export const CurrentUserProvider = ({
 	const logoutUser = () => {
 		setCurrentUser(nulloUser);
 		clearSessionStorage(sessionStorageKey.MFT);
+		window.location.replace('signin');
 	};
 
 	return (

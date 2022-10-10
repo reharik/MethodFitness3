@@ -9,7 +9,7 @@ export const Header = () => (
 
 const StyledMainHeader = styled.div(
 	({ theme: { color } }) => `
-  background: url('./images/header-title.gif') no-repeat #407397;
+  background: url('/images/header-title.gif') no-repeat #407397;
 	min-height: 78px;
   width: 100%;
   margin-bottom: 6px;

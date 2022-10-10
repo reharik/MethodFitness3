@@ -7,16 +7,5 @@ export const AuthenticatedRoutes = (): JSX.Element | null => {
 	// const { currentUser } = currentUserContext;
 	const apiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiProxyRoute}`;
 
-	return (
-		<Routes>
-			<Route
-				path='/calendar'
-				element={
-					<AuthenticatedRoute>
-						<Calendar />
-					</AuthenticatedRoute>
-				}
-			/>
-		</Routes>
-	);
+	return <Routes></Routes>;
 };

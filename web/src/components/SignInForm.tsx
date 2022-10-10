@@ -9,6 +9,7 @@ import { SubmissionFor } from './forms';
 import { ButtonLg } from './designSystem/buttons';
 import { Subtitle } from './designSystem/TextComponents';
 import { Alert, TNotification } from './Alert';
+import { navigate } from '@storybook/addon-links';
 
 type SignInFormProps = {
 	note?: TNotification;
@@ -23,6 +24,7 @@ export const SignInForm = ({ onSubmit, note, clearNote }: SignInFormProps) => {
 	) => {
 		await onSubmit(values);
 		setSubmitting(false);
+		window.location.replace('schedule#calendar');
 	};
 	const onFormChange = () => {
 		if (note) {
