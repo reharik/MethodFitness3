@@ -8,8 +8,7 @@ import { CurrentUserProvider } from './providers/currentUserProvider';
 
 function App() {
 	return (
-		<ApolloProvider
-			uri={`${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiRoute}`}>
+		<ApolloProvider uri={config.apiGraphQLUrl}>
 			<CurrentUserProvider>
 				<StyleProvider>
 					<ModalProvider>

@@ -10,10 +10,12 @@ type Config = {
 	apiProtocol: string;
 	apiRoute: string;
 	apiProxyRoute: string;
+	apiProxyUrl: string;
+	apiGraphQLUrl: string;
 };
 
 export const getConfig = (): Config => {
-	return {
+	const config = {
 		nodeEnv: process.env.NODE_ENV || 'development',
 		// All of the subsequent env vars should be prefixed with REACT_APP_.
 		// If they are not they will not be found in the process.env
@@ -29,7 +31,16 @@ export const getConfig = (): Config => {
 		apiProxyRoute: process.env.API_PROXY_ROUTE || 'csharp',
 		apiRoute: process.env.API_ROUTE || 'graphql',
 		apiProtocol: process.env.REACT_APP_API_PROTOCOL || 'http',
+		apiProxyUrl: '',
+		apiGraphQLUrl: '',
 	};
+	const isLocal = config.apiHost === 'localhost';
+	const root = `${config.apiProtocol}://${config.apiHost}${
+		isLocal ? ':' + config.apiPort : ''
+	}/`;
+	config.apiProxyUrl = `${root}${config.apiProxyRoute}`;
+	config.apiGraphQLUrl = `${root}${config.apiRoute}`;
+	return config;
 };
 
 export const config: Config = getConfig();

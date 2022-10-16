@@ -24,7 +24,7 @@ export const SignInForm = ({ onSubmit, note, clearNote }: SignInFormProps) => {
 	) => {
 		await onSubmit(values);
 		setSubmitting(false);
-		window.location.replace('schedule#calendar');
+		// window.location.replace('schedule#calendar');
 	};
 	const onFormChange = () => {
 		if (note) {

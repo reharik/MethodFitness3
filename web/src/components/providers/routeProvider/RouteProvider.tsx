@@ -18,8 +18,6 @@ export type RouterProviderProps = {
 
 export const RouteProvider = (): JSX.Element | null => {
 	// const { currentUser } = currentUserContext;
-	const apiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiProxyRoute}`;
-
 	return (
 		<BrowserRouter>
 			<Routes>

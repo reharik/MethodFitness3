@@ -1,6 +1,5 @@
 import { SignInForm } from '../../components/SignInForm';
 import { LoginModel } from '../../formSchemas/signInFormSchema';
-import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { notificationType } from '../../enums/notificationType';
 import { TNotification } from '../../components/Alert';
@@ -19,18 +18,15 @@ Please check your user name and password`,
 
 export const SignInFormContainer = () => {
 	const [note, setNote] = useState<TNotification>();
-	const navigate = useNavigate();
 	const { setCurrentUser } = useContext(CurrentUserContext);
-	const [authenticateMutation, { data, loading, error }] =
-		useAuthenticateMutation();
-	const apiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiProxyRoute}`;
+	const [authenticateMutation] = useAuthenticateMutation();
 	const loginPath = `/Login/Login`;
 
 	const clearNote = () => {
 		setNote(undefined);
 	};
 	const onSubmit = async (values: LoginModel) => {
-		const url = apiUri + loginPath;
+		const url = config.apiProxyUrl + loginPath;
 		const result = await fetchUtil({
 			url,
 			method: 'POST',
