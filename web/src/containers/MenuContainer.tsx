@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { MenuItemList } from '../components/layout/Menu';
 import { MenuItemData } from '../components/layout/Menu/MenuItemList';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 type CurrentMenuNodeInfo = {
 	currentI: MenuItemData;
 	currentIs: MenuItemData[];
@@ -40,6 +41,7 @@ export const MenuContainer = () => {
 	const [items, setItems] = useState<MenuItemData[]>([]);
 	const [currentItems, setCurrentItems] = useState<MenuItemData[]>([]);
 	const [breadCrumbItems, setBreadCrumbItems] = useState<string[]>([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const menu = menuItems;
@@ -70,7 +72,12 @@ export const MenuContainer = () => {
 			setCurrentItems(item.children);
 			setBreadCrumbItems((state) => [...state, item.text]);
 		} else {
-			window.location.assign(item.path);
+			// window.location.assign(item.path);
+			const route = item.path.substring(item.path.indexOf('#'));
+			navigate(item.path);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			MF.vent.trigger('route', route, true);
 		}
 	};
 	const navBreadCrumbClicked = (text: string, index: number) => {

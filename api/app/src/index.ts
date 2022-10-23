@@ -8,7 +8,7 @@ import { koaProxyMiddleware } from './koa/koaProxy/proxy';
 
 const createApiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiRoute}`;
 // const createcSharpUri = `${config.cSharpProtocol}://${config.cSharpHost}:${config.cSharpPort}/`;
-const createcSharpUri = `http://methodfit.net`;
+const createcSharpUri = `http://v2.methodfit.net`;
 async function startApolloServer() {
 	const server = buildApolloServer();
 	await server.start();

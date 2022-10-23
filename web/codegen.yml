@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://proxy.methodfit.net/graphql'
+schema: 'http://proxyv2.methodfit.net/graphql'
 documents: 'src/**/*.graphql'
 generates:
     src/generated/graphql.ts:

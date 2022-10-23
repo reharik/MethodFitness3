@@ -9,6 +9,7 @@ import { useAuthenticateMutation } from '../../generated/graphql';
 import { setSessionStorage } from '../../utils/sessionStorage';
 import { sessionStorageKey } from '../../enums/sessionStorageKeys';
 import { CurrentUserContext } from '../../components/providers/currentUserProvider/CurrentUserProvider';
+import { useNavigate } from 'react-router';
 
 const errorNotification: TNotification = {
 	type: notificationType.error,
@@ -21,6 +22,7 @@ export const SignInFormContainer = () => {
 	const { setCurrentUser } = useContext(CurrentUserContext);
 	const [authenticateMutation] = useAuthenticateMutation();
 	const loginPath = `/Login/Login`;
+	const navigate = useNavigate();
 
 	const clearNote = () => {
 		setNote(undefined);
@@ -59,7 +61,7 @@ export const SignInFormContainer = () => {
 		// window.location.(apiUri + '/calendar');
 		// build currentUser
 
-		// navigate('calendar');
+		navigate('schedule');
 	};
 	return <SignInForm onSubmit={onSubmit} note={note} clearNote={clearNote} />;
 };
