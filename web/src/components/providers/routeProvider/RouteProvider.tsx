@@ -22,6 +22,7 @@ export const RouteProvider = (): JSX.Element | null => {
 		<BrowserRouter>
 			<Routes>
 				<Route path='/signin' element={<SignInFormContainer />} />
+				<Route path='/Billing' element={<Calendar />} />
 				<Route path='/*' element={<RootContainer />} />
 				<Route path='*' element={<FileNotFound />}></Route>
 			</Routes>

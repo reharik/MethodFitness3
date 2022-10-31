@@ -53,9 +53,9 @@ export const MenuItemList = ({
 
 const StyledMenu = styled.div(
 	({ theme: { color } }) => `
-	width: 220px;
+	width: 185px;
   min-height: 400px;
-  padding: 0 5px 21px;
+  padding: 3px 2px 21px;
 	border: none;
   background: transparent;
   margin-left: 2px;

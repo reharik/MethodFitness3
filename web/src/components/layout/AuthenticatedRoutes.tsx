@@ -9,6 +9,10 @@ export const AuthenticatedRoutes = (): JSX.Element | null => {
 				path='/schedule'
 				element={<AuthenticatedRoute component={<Calendar />} />}
 			/>
+			<Route
+				path='/billing'
+				element={<AuthenticatedRoute component={<Calendar />} />}
+			/>
 		</Routes>
 	);
 };

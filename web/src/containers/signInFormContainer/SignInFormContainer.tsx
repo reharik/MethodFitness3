@@ -58,7 +58,7 @@ export const SignInFormContainer = () => {
 			);
 			setCurrentUser(authentication.data);
 		}
-		// window.location.(apiUri + '/calendar');
+		window.location.replace('/scheduler#calendar');
 		// build currentUser
 
 		navigate('schedule');

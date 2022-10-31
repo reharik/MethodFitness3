@@ -201,6 +201,6 @@ const typographyCSS = css(
 
 export const GlobalStyle = createGlobalStyle`
 	${baseCSS}
-	${resetCSS}
+	/* ${resetCSS} */
 	${typographyCSS}
 `;

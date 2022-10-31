@@ -8,12 +8,17 @@ import { koaProxyMiddleware } from './koa/koaProxy/proxy';
 
 const createApiUri = `${config.apiProtocol}://${config.apiHost}:${config.apiPort}/${config.apiRoute}`;
 // const createcSharpUri = `${config.cSharpProtocol}://${config.cSharpHost}:${config.cSharpPort}/`;
-const createcSharpUri = `http://v2.methodfit.net`;
+const createcSharpUri = `http://methodfit.net`;
 async function startApolloServer() {
 	const server = buildApolloServer();
 	await server.start();
 	const app = new Koa();
-	app.use(cors({ credentials: true }));
+	app.use(
+		cors({
+			allowMethods: 'GET, POST, OPTIONS',
+			credentials: true,
+		})
+	);
 	app.use(koaErrorHandlerMiddleware);
 	// app.use(koaAuthMiddleware);
 
@@ -22,7 +27,7 @@ async function startApolloServer() {
 		logLevel: 'debug',
 		changeOrigin: true,
 		cookieDomainRewrite: {
-			'methodfit.net': 'localhost:3001',
+			'methodfit.net': 'react.methodfit.net',
 		},
 	});
 	app.use(proxy);

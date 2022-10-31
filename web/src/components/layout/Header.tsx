@@ -10,12 +10,11 @@ export const Header = () => (
 const StyledMainHeader = styled.div(
 	({ theme: { color } }) => `
   background: url('/images/header-title.gif') no-repeat #407397;
-	min-height: 78px;
+	min-height: 71px;
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  border-bottom: 7px white solid;
 `
 );

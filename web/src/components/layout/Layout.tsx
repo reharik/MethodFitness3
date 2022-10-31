@@ -59,8 +59,8 @@ const StyledMainContent = styled.div(
 	({ theme: { color } }) => `
 padding: '0 0 24px 0';
 background: '#f2f2f2';
-width: 87%;
 height: 100%;
+width: 100%;
 `
 );
 
@@ -69,6 +69,9 @@ const StyledBody = styled.div(
 	width: 100%;
 	height: 100%;
 	display: flex;
+	padding-top: 7px;
+	border-top: 1px #e5e5e5 solid;
+	background-color: #F2F2F2;
 	`
 );
 
