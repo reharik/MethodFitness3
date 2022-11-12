@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build; cp web.config build; rm build.zip; zip -r -q build.zip build",
+		"build": "react-scripts build; cp web.config build; rm build.zip; zip -rqj build.zip build/*",
 		"gen": "graphql-codegen --config codegen.yml",
 		"pretty": "prettier --check ./src",
 		"prettify": "prettier -w ./src",

@@ -2,12 +2,40 @@ import { useState, useEffect } from 'react';
 import { MenuItemList } from '../components/layout/Menu';
 import { MenuItemData } from '../components/layout/Menu/MenuItemList';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { fetchUtil } from '../utils/fetchUtil';
+import { config } from '../config';
 
 type CurrentMenuNodeInfo = {
 	currentI: MenuItemData;
 	currentIs: MenuItemData[];
 	bcs: string[];
 };
+
+type ServerMenuItems = {
+	Text: string;
+	Url: string;
+	Children: ServerMenuItems[];
+};
+
+const transformServerMenuItems = (
+	oldItems: ServerMenuItems[],
+	newItems: MenuItemData[]
+): MenuItemData[] => {
+	if (!oldItems) {
+		return [];
+	}
+
+	for (let i = 0; i < oldItems.length; i++) {
+		const x = oldItems[i];
+		newItems.push({
+			text: x.Text,
+			path: `scheduler#${x.Url}`,
+			children: transformServerMenuItems(x.Children, []),
+		});
+	}
+	return newItems;
+};
+
 const findCurrentMenuNodeInfo = (
 	arr: MenuItemData[],
 	target: string,
@@ -44,23 +72,32 @@ export const MenuContainer = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const menu = menuItems;
-		setItems(menu);
+		const url = config.apiProxyUrl + 'Orthogonal/MainMenuJSON';
+		fetchUtil({
+			url,
+			method: 'GET',
+		}).then((x) => {
+			const newMenuItems = transformServerMenuItems(x, []);
+			setItems(newMenuItems);
+		});
+	}, []);
+
+	useEffect(() => {
 		let result = {
-			currentI: menu[0],
-			currentIs: menu,
+			currentI: items[0],
+			currentIs: items,
 			bcs: [] as string[],
 		};
 		if (location.hash) {
 			const target = location.pathname.substring(1) + location.hash;
 			result =
-				findCurrentMenuNodeInfo(menu, target, menu, [] as string[]) ||
+				findCurrentMenuNodeInfo(items, target, items, [] as string[]) ||
 				result;
 		}
 		setCurrentItems(result.currentIs);
 		setCurrentItem(result.currentI);
 		setBreadCrumbItems(result.bcs);
-	}, []);
+	}, [items]);
 
 	const menuItemClicked = (text: string, hasChildren: boolean) => {
 		const item = currentItems.find((x) => x.text === text);
@@ -95,7 +132,7 @@ export const MenuContainer = () => {
 		setCurrentItems(arr);
 	};
 
-	if (!items) {
+	if (items.length === 0) {
 		return null;
 	}
 
@@ -110,72 +147,72 @@ export const MenuContainer = () => {
 	);
 };
 
-const menuItems: MenuItemData[] = [
-	{
-		children: [],
-		text: 'Calendar',
-		path: 'scheduler#calendar',
-	},
-	{
-		children: [],
-		text: 'Clients',
-		path: 'scheduler#clientlist',
-	},
-	{
-		children: [],
-		text: 'Session Report',
-		path: 'scheduler#trainersessionview',
-	},
-	{
-		children: [],
-		text: 'Payment History',
-		path: 'scheduler#trainerpaymentlist',
-	},
-	{
-		children: [],
-		text: 'Session Verification',
-		path: 'scheduler#trainersessionverification',
-	},
-	{
-		children: [
-			{
-				children: [],
-				text: 'Locations',
-				path: 'scheduler#locationlist',
-			},
-			{
-				children: [],
-				text: 'Base Rates',
-				path: 'scheduler#basesessionrate',
-			},
-			{
-				children: [],
-				text: 'Trainers',
-				path: 'scheduler#trainerlist',
-			},
-			{
-				children: [
-					{
-						children: [],
-						text: 'Payments',
-						path: 'scheduler#dailypayments',
-					},
-					{
-						children: [],
-						text: 'Productivity',
-						path: 'scheduler#trainermetric',
-					},
-					{
-						children: [],
-						text: 'Activity',
-						path: 'scheduler#activity',
-					},
-				],
-				text: 'Reports',
-				path: '#',
-			},
-		],
-		text: 'Admin Tools',
-		path: '#',
-	},
-];
+// const menuItems: MenuItemData[] = [
+// 	{
+// 		children: [],
+// 		text: 'Calendar',
+// 		path: 'scheduler#calendar',
+// 	},
+// 	{
+// 		children: [],
+// 		text: 'Clients',
+// 		path: 'scheduler#clientlist',
+// 	},
+// 	{
+// 		children: [],
+// 		text: 'Session Report',
+// 		path: 'scheduler#trainersessionview',
+// 	},
+// 	{
+// 		children: [],
+// 		text: 'Payment History',
+// 		path: 'scheduler#trainerpaymentlist',
+// 	},
+// 	{
+// 		children: [],
+// 		text: 'Session Verification',
+// 		path: 'scheduler#trainersessionverification',
+// 	},
+// 	{
+// 		children: [
+// 			{
+// 				children: [],
+// 				text: 'Locations',
+// 				path: 'scheduler#locationlist',
+// 			},
+// 			{
+// 				children: [],
+// 				text: 'Base Rates',
+// 				path: 'scheduler#basesessionrate',
+// 			},
+// 			{
+// 				children: [],
+// 				text: 'Trainers',
+// 				path: 'scheduler#trainerlist',
+// 			},
+// 			{
+// 				children: [
+// 					{
+// 						children: [],
+// 						text: 'Payments',
+// 						path: 'scheduler#dailypayments',
+// 					},
+// 					{
+// 						children: [],
+// 						text: 'Productivity',
+// 						path: 'scheduler#trainermetric',
+// 					},
+// 					{
+// 						children: [],
+// 						text: 'Activity',
+// 						path: 'scheduler#activity',
+// 					},
+// 				],
+// 				text: 'Reports',
+// 				path: '#',
+// 			},
+// 		],
+// 		text: 'Admin Tools',
+// 		path: '#',
+// 	},
+// ];
