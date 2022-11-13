@@ -14,7 +14,10 @@ export type Config = {
 	cSharpPort: number;
 	cSharpProtocol: string;
 	applicationEnv: string;
-	databaseConnection: string;
+	sqlserverServer: string;
+	sqlserverUser: string;
+	sqlserverPassword: string;
+	sqlserverDatabase: string;
 	tokenHeaderKey: string;
 	jwtSecretKey: string;
 };
@@ -41,7 +44,12 @@ export const setupConfig = (): Config => {
 			: parseInt(process.env.CSHARP_PORT || '', 10),
 		cSharpProtocol: process.env.CSHARP_PROTOCOL || 'http',
 		applicationEnv: process.env.APPLICATION_ENV || 'local',
-		databaseConnection: process.env.DATABASE_CONNECTION || '',
+
+		sqlserverServer: process.env.SQLSERVER_SERVER || '',
+		sqlserverUser: process.env.SQLSERVER_USER || '',
+		sqlserverPassword: process.env.SQLSERVER_PASSWORD || '',
+		sqlserverDatabase: process.env.SQLSERVER_DATABASE || '',
+
 		tokenHeaderKey: process.env.TOKEN_HEADER_KEY || '',
 		jwtSecretKey: process.env.JWT_SECRET_KEY || '',
 	};

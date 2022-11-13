@@ -1,12 +1,12 @@
-// import { config } from './config';
+import { config } from './config';
 
 export const knexConfig = {
 	client: 'mssql',
 	connection: {
-		server: '18.222.101.255',
-		user: 'methodFitness',
-		password: 'm3th0df1t',
-		database: 'MethodFitness_PROD',
+		server: config.sqlserverServer,
+		user: config.sqlserverUser,
+		password: config.sqlserverPassword,
+		database: config.sqlserverDatabase,
 		options: {
 			port: 1433,
 		},

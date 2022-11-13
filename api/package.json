@@ -4,7 +4,7 @@
 	"main": "app/src/index.ts",
 	"scripts": {
 		"start": "nodemon",
-		"build": "zen build",
+		"build": "rm proxyMethodFit.zip; zip -rq proxyMethodFit.zip .",
 		"gen": "graphql-codegen --config codegen.yml",
 		"pretty": "prettier --check ./src",
 		"prettify": "prettier -w ./src",
