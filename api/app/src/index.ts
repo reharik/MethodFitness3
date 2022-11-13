@@ -27,7 +27,7 @@ async function startApolloServer() {
 		logLevel: 'debug',
 		changeOrigin: true,
 		cookieDomainRewrite: {
-			'reports.methodfit.net': 'methodfit.net',
+			'qa.reports.methodfit.net': 'qa.methodfit.net',
 		},
 	});
 	app.use(proxy);
