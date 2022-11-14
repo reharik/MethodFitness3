@@ -77,7 +77,7 @@ export const MenuContainer = () => {
 			url,
 			method: 'GET',
 		}).then((x) => {
-			const newMenuItems = transformServerMenuItems(x, []);
+			const newMenuItems = transformServerMenuItems(x.data, []);
 			setItems(newMenuItems);
 		});
 	}, []);
